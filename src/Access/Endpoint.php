@@ -23,6 +23,11 @@ class Endpoint
     private $uniqueID = 'hash';
 
     /**
+     * @var string
+     */
+    private $connType = 'tcp';
+
+    /**
      * Endpoint constructor.
      * @param $lookupd
      * @throws InvalidLookupdException
@@ -37,6 +42,8 @@ class Endpoint
         if (!isset($parsed['host'])) {
             throw new InvalidLookupdException;
         }
+
+        $this->connType = PHP_SAPI == 'cli' ? 'tcp' : 'http';
     }
 
     /**
@@ -60,6 +67,13 @@ class Endpoint
      */
     public function getConnType()
     {
-        return PHP_SAPI == 'cli' ? 'tcp' : 'http';
+        return $this->connType;
+    }
+
+    /**
+     * @param string $connType
+     */
+    function setConnType($connType) {
+        $this->connType = $connType;
     }
 }
