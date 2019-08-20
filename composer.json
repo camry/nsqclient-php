@@ -1,5 +1,5 @@
 {
-  "name": "moolex/nsqclient",
+  "name": "camry/nsqclient",
   "keywords": ["nsq"],
   "license": "MIT",
   "require": {
